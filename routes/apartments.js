@@ -41,4 +41,16 @@ router.post('/apartment', async (req, res) => {
    
 })
 
+router.get('/apartment/:id', async (req, res) => {
+    try {
+        const apartment = await Apartment.findOne(
+            { id: req.params.id }, 
+            {_id: 0, __v: 0} )
+        res.json(apartment)
+    } catch(e) {
+        res.json({ message: e })
+    }
+   
+})
+
 module.exports = router
